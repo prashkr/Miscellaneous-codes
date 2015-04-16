@@ -99,6 +99,36 @@ struct node *insertFront(struct node *head3, int data)
 
 }
 
+struct node *reverseUtil(struct node *t1, struct node *t2)
+{
+	if(t2==NULL)
+		return t1;
+
+	struct node *head = reverseUtil(t2, t2->next);
+	if(t1==t2)
+	{
+		t1->next = NULL;
+		return head;
+	}
+		
+	else
+		t2->next = t1;
+
+	return head;
+}
+
+struct node *reverse(struct node *head)
+{
+	if(head==NULL)
+		return NULL;
+
+	if(head->next==NULL)
+		return head;
+
+	head = reverseUtil(head, head);
+	return head;
+}
+
 //usage inside main()
 /*
 	struct node *head = NULL;
@@ -111,6 +141,8 @@ struct node *insertFront(struct node *head3, int data)
 		head = insert(head, data);
 		// insert1(&head1, data);
 	}	
+
+	head = reverse(head);
 
 	print(head);
 
