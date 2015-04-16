@@ -34,6 +34,23 @@ struct node *insert(struct node *head, int data)
 	return head;
 }
 
+//second way to insert
+void insert1(struct node **head, int data)
+{
+	if(*head==NULL)
+	{
+		*head = newNode(data);
+		return;
+	}
+
+	struct node *temp = *head;
+	while(temp->next!=NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = newNode(data);
+}
+
 struct node *findTail(struct node *head)
 {
 	struct node *temp = head;
@@ -81,3 +98,20 @@ struct node *insertFront(struct node *head3, int data)
 	return head3;
 
 }
+
+//usage inside main()
+/*
+	struct node *head = NULL;
+
+	int i;
+	for(i=0; i<5; i++)
+	{
+		int data;
+		cin>>data;
+		head = insert(head, data);
+		// insert1(&head1, data);
+	}	
+
+	print(head);
+
+*/
